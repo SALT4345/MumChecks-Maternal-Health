@@ -1,0 +1,178 @@
+INSTALLATION & SETUP GUIDE
+================================
+
+MumChecks - Maternal Health Companion
+Project Version: 1.0.0
+Last Updated: May 2026
+
+SYSTEM REQUIREMENTS
+===================
+- PHP 7.4 or higher
+- MySQL 5.7 or higher
+- Apache/Nginx web server
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Minimum 10MB free disk space
+
+INSTALLATION STEPS
+==================
+
+STEP 1: LOCAL SETUP (XAMPP/WAMP)
+---------------------------------
+
+1. Download XAMPP or WAMP from official website
+2. Install on your computer
+3. Start Apache and MySQL services
+4. Copy the entire MumChecks folder to:
+   - XAMPP: C:\xampp\htdocs\
+   - WAMP: C:\wamp64\www\
+
+STEP 2: DATABASE SETUP
+-----------------------
+
+1. Open phpMyAdmin: http://localhost/phpmyadmin
+2. Click "Import" tab
+3. Choose "database/schema.sql" file
+4. Click "Go" to import
+
+OR manually:
+1. Open MySQL command line
+2. Run: mysql -u root -p < database/schema.sql
+3. Enter password when prompted
+
+STEP 3: CONFIGURATION
+---------------------
+
+1. Open "api/config.php"
+2. Update database credentials:
+   $host = 'localhost';     (usually stays as localhost)
+   $dbname = 'mumchecks';   (database name)
+   $user = 'root';          (MySQL username)
+   $password = '';          (MySQL password)
+
+STEP 4: VERIFICATION
+--------------------
+
+1. Navigate to: http://localhost/MumChecks-Maternal-Health
+2. You should see the landing page
+3. Click "Get Started"
+4. Register a test account
+5. Login and explore the dashboard
+
+TROUBLESHOOTING
+===============
+
+Problem: "Database connection failed"
+Solution: 
+- Check MySQL is running
+- Verify credentials in api/config.php
+- Ensure database name is 'mumchecks'
+
+Problem: "Page not found"
+Solution:
+- Check folder is in correct location (htdocs/www)
+- Verify Apache is running
+- Check URL spelling
+
+Problem: "Login fails"
+Solution:
+- Verify user was registered
+- Check email and password are correct
+- Clear browser cache and cookies
+
+Problem: "CSS/JavaScript not loading"
+Solution:
+- Check file paths are correct
+- Verify css/ and js/ folders exist
+- Clear browser cache (Ctrl+Shift+Delete)
+
+FILE STRUCTURE
+==============
+
+MumChecks-Maternal-Health/
+├── index.html              Landing page
+├── dashboard.html          User dashboard
+├── css/
+│   ├── style.css          Main styles
+│   └── dashboard.css      Dashboard styles
+├── js/
+│   ├── script.js          Main functionality
+│   └── dashboard.js       Dashboard functionality
+├── api/
+│   ├── config.php         Database config [EDIT THIS]
+│   ├── auth/
+│   │   ├── register.php
+│   │   └── login.php
+│   ├── user/
+│   │   ├── profile.php
+│   │   └── update-profile.php
+│   ├── health/
+│   │   ├── log.php
+│   │   └── history.php
+│   ├── reminders/
+│   │   ├── get.php
+│   │   ├── create.php
+│   │   ├── complete.php
+│   │   └── delete.php
+│   └── tips/
+│       └── get.php
+├── database/
+│   └── schema.sql         Database structure
+├── README.md              Full documentation
+└── INSTALL.txt            This file
+
+QUICK START
+===========
+
+Test Account (after import):
+No test accounts created - users must register first.
+
+Demo Workflow:
+1. Register: Create account with pregnancy details
+2. Dashboard: View pregnancy progress
+3. Health: Log your vital signs
+4. Reminders: Manage health tasks
+5. Tips: Read pregnancy information
+6. Profile: Update your information
+
+SECURITY NOTES
+==============
+
+IMPORTANT: For Production Use:
+- Change MySQL default password
+- Use HTTPS/SSL certificate
+- Move api/config.php to secure location
+- Enable PHP error logging
+- Set proper file permissions (chmod 755 for directories)
+- Disable PHP error display to screen
+- Use environment variables for credentials
+- Implement rate limiting
+
+For Development ONLY:
+- Default settings are acceptable
+- Use localhost only
+- No external access
+
+API TESTING
+===========
+
+You can test the API using tools like:
+- Postman (https://postman.com)
+- Insomnia (https://insomnia.rest)
+- cURL command line
+
+Example cURL Login:
+curl -X POST http://localhost/MumChecks-Maternal-Health/api/auth/login.php \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"password123"}'
+
+SUPPORT & HELP
+==============
+
+Documentation: See README.md
+Issues: Check browser console (F12 > Console tab)
+Database: Use phpMyAdmin for troubleshooting
+API: Test endpoints with Postman
+
+Created: May 2026
+For: IT Base Solution Project
+Status: Ready for Demo and Production Use
